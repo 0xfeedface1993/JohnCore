@@ -16,6 +16,12 @@ public struct VerticalSet: Equatable {
     public var height: CGFloat?
     /// 作用的视图
     public var view: UIView
+    
+    public init(view: UIView, edge: UIEdgeInsets, height: CGFloat? = nil) {
+        self.edge = edge
+        self.height = height
+        self.view = view
+    }
 }
 
 extension UIView {

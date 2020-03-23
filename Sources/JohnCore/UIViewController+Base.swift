@@ -7,8 +7,8 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
-    override func viewDidAppear(_ animated: Bool) {
+public class BaseViewController: UIViewController {
+    override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let pop = rushPopCompletion {
             pop(self)
