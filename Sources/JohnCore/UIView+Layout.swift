@@ -44,7 +44,7 @@ extension UIView {
 extension Array where Element == VerticalSet {
     /// 激活垂直排列视图
     public func activeVerticalLayout() {
-        guard self.count <= 0 else {
+        guard self.count > 0 else {
             print(">>> 无视图元素")
             return
         }
