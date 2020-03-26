@@ -13,9 +13,9 @@ extension UIColor {
     ///   - hex: 十六进制数
     ///   - alpha: 透明度，1-1.0
     public static func hexColor(_ hex: UInt32, alpha: CGFloat = 1.0) -> UIColor {
-        let red: CGFloat = CGFloat((hex & 0xff0000) >> 16)
-        let green: CGFloat = CGFloat((hex & 0x00ff00) >> 8)
-        let blue: CGFloat = CGFloat(hex & 0x0000ff)
+        let red: CGFloat = CGFloat((hex & 0xff0000) >> 16) / 255.0
+        let green: CGFloat = CGFloat((hex & 0x00ff00) >> 8) / 255.0
+        let blue: CGFloat = CGFloat(hex & 0x0000ff) / 255.0
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
 }
