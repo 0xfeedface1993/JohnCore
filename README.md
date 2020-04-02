@@ -8,6 +8,9 @@
 ## Navigate
 
 - [UIColor](#UIColor)
+- [Number](#Number)
+  - [Double](#Number)
+  - [Float](#Number)
 
 ## UIColor
 
@@ -16,4 +19,14 @@
 ```swift
 public static func hexColor(_ hex: UInt32, alpha: CGFloat = 1.0) -> UIColor
 ```
+
+## Number
+
+`Float`、`Double`数据转化成优雅的文本，比如数值`0.12000`转化为字符串`0.12`.
+
+```swift
+// fractionDigits暂时没有任何作用
+public func niceNumber(withFractionDigits fractionDigits: UInt) -> String
+```
+
 
