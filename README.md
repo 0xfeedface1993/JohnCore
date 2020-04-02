@@ -29,4 +29,15 @@ public static func hexColor(_ hex: UInt32, alpha: CGFloat = 1.0) -> UIColor
 public func niceNumber(withFractionDigits fractionDigits: UInt) -> String
 ```
 
+## String Validation
+
+手机号、邮箱验证
+
+```swift
+/// 检测字符串是否是手机号
+public func isValidPhone() -> Bool
+/// 检测字符串是否是邮箱
+/// - Returns: true为是邮箱
+public func isEmailAddress() -> Bool 
+```
 
