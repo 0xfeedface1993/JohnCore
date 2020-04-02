@@ -17,4 +17,18 @@ extension String {
         }
         return self.count == 11
     }
+    
+    /// 检测字符串是否是邮箱
+    /// - Returns: true为是邮箱
+    public func isEmailAddress() -> Bool {
+        let expression = try! NSRegularExpression(pattern: "^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$", options: .caseInsensitive)
+        let nsText = self as NSString
+        let range = NSRange(location: 0, length: nsText.length)
+        guard let result = expression.firstMatch(in: self, options: .reportCompletion, range: range) else {
+            print(">>> 非邮箱： \(self)")
+            return false
+        }
+        print(">>> email: \(nsText.substring(with: result.range))")
+        return true
+    }
 }

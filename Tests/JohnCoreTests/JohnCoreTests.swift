@@ -12,4 +12,16 @@ final class JohnCoreTests: XCTestCase {
     static var allTests = [
         ("testExample", testExample),
     ]
+    
+    /// 验证邮箱方法测试
+    func testEmail() {
+        let goodEmail = ["318715498@qq.com", "开心2019@hotmail.com"]
+        let badEmails = ["happp@", "@qq.com", "12332423", "背景"]
+        for i in goodEmail {
+            XCTAssert(i.isEmailAddress(), "正确邮箱验证失败：\(i)")
+        }
+        for i in badEmails {
+            XCTAssert(!i.isEmailAddress(), "非法邮箱验证失败：\(i)")
+        }
+    }
 }
