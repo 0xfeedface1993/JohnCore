@@ -88,4 +88,51 @@ extension Array where Element == VerticalSet {
             })
         }).forEach({ $0.0.smash($0.1) })
     }
+    
+    /// 激活水平排列视图
+    public func activeHorizatalLayout() {
+        guard self.count > 0 else {
+            print(">>> 无视图元素")
+            return
+        }
+        
+        guard let baseView = self.first?.view.superview else {
+            print(">>> 无父视图元素")
+            return
+        }
+        
+        guard self.count > 1 else {
+            print(">>> 只有一个视图元素")
+            if let firstUnit = self.first {
+                let maker : ((ConstraintMaker) -> Void) = { make in
+                    make.edges.equalTo(baseView).inset(firstUnit.edge)
+                    if let width = firstUnit.height {
+                        make.width.equalTo(width)
+                    }
+                }
+                firstUnit.view.smash(maker)
+            }
+            return
+        }
+        
+        self.enumerated().map({ (index, unit) -> (UIView, ((ConstraintMaker) -> Void)) in
+            (unit.view, { make in
+                make.top.equalTo(baseView).offset(unit.edge.top)
+                make.bottom.equalTo(baseView).offset(-unit.edge.bottom)
+                if let width = unit.height {
+                    make.width.equalTo(width)
+                }
+                // 第一个视图左侧和父视图对齐
+                if unit == self.first {
+                    make.left.equalTo(baseView).offset(unit.edge.left)
+                    return
+                }
+                make.left.equalTo(self[index - 1].view.snp.right).offset(unit.edge.left)
+                // 最会一个视图右侧和父视图对齐
+                if unit == self.last {
+                    make.right.equalTo(baseView).offset(-unit.edge.right)
+                }
+            })
+        }).forEach({ $0.0.smash($0.1) })
+    }
 }
