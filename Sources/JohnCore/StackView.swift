@@ -38,7 +38,7 @@ extension HoriztalStackView {
             if let v = stackView.arrangedSubviews.last {
                 stackView.addArrangedSubview(item)
                 item.snp.makeConstraints({ make in
-                    make.width.height.equalTo(v)
+                    make.height.equalTo(v)
                 })
                 continue
             }
