@@ -41,3 +41,16 @@ public func isValidPhone() -> Bool
 public func isEmailAddress() -> Bool 
 ```
 
+## UIButton
+
+UIButton一般没有什么复杂的封装，为了提升SwiftUI语感和提升代码提示速度，因此此框架添加了链式语法的封装。
+
+```swift
+actionButton
+    .title("确定")
+    .forgroundColor(.white)
+    .makeBackgroundColorImage(.hexColor(0x259AFA))
+    .font(.systemFont(ofSize: 15, weight: .medium))
+    .contentInsets(UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0))
+    .cornerRadius(8)
+```

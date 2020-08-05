@@ -13,7 +13,7 @@ extension UIButton {
     /// - Parameter state: 在按钮什么状态显示，默认为normal状态
     /// - Returns: UIButton自身对象
     @discardableResult
-    func forgroundColor(_ color: UIColor, state: UIControl.State = .normal) -> UIButton {
+    open func forgroundColor(_ color: UIColor, state: UIControl.State = .normal) -> UIButton {
         setTitleColor(color, for: state)
         return self
     }
@@ -24,7 +24,7 @@ extension UIButton {
     ///   - state: 在按钮什么状态显示，默认为normal状态
     /// - Returns: UIButton自身对象
     @discardableResult
-    func title(_ text: String, state: UIControl.State = .normal) -> UIButton {
+    open func title(_ text: String, state: UIControl.State = .normal) -> UIButton {
         setTitle(text, for: state)
         return self
     }
@@ -33,7 +33,7 @@ extension UIButton {
     /// - Parameter inset: 内边距
     /// - Returns: UIButton自身对象
     @discardableResult
-    func contentInsets(_ inset: UIEdgeInsets) -> UIButton {
+    open func contentInsets(_ inset: UIEdgeInsets) -> UIButton {
         contentEdgeInsets = inset
         return self
     }
@@ -44,7 +44,7 @@ extension UIButton {
     /// - Parameter disableColor: disabled状态下背景色
     /// - Returns: UIButton自身对象
     @discardableResult
-    func makeBackgroundColorImage(_ backgroundColor: UIColor, optical: CGFloat = 0.8, disableColor: UIColor = .hexColor(0xcccccc)) -> UIButton {
+    open func makeBackgroundColorImage(_ backgroundColor: UIColor, optical: CGFloat = 0.8, disableColor: UIColor = .hexColor(0xcccccc)) -> UIButton {
         setBackgroundImage(backgroundColor.imageValue, for: .normal)
         setBackgroundImage(backgroundColor.optical(optical).imageValue, for: .highlighted)
         setBackgroundImage(disableColor.imageValue, for: .disabled)
@@ -55,7 +55,7 @@ extension UIButton {
     /// - Parameter font: 字体
     /// - Returns: UIButton自身对象
     @discardableResult
-    func font(_ font: UIFont) -> UIButton {
+    open func font(_ font: UIFont) -> UIButton {
         titleLabel?.font = font
         return self
     }
@@ -64,7 +64,7 @@ extension UIButton {
     /// - Parameter radius: 圆角半径
     /// - Returns: UIButton自身对象
     @discardableResult
-    func cornerRadius(_ radius: CGFloat? = nil) -> UIButton {
+    open func cornerRadius(_ radius: CGFloat? = nil) -> UIButton {
         layer.cornerRadius = radius ?? (titleLabel?.font.lineHeight ?? 0 + contentEdgeInsets.top + contentEdgeInsets.bottom) / 2.0
         clipsToBounds = true
         return self
