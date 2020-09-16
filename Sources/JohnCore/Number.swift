@@ -12,11 +12,11 @@ extension Float {
     /// 如 4.09999999 -> 5
     /// - Parameter fractionDigits: 显示最大小数点后面几位
     public func niceNumber(withFractionDigits fractionDigits: UInt) -> String {
-//        let formatter = NumberFormatter()
-//        formatter.numberStyle = .decimal
-//        formatter.maximumFractionDigits = Int(fractionDigits)
-//        return formatter.string(from: self as NSNumber) ?? ""
-        return "\(NSNumber(value: self))"
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = Int(fractionDigits)
+        return formatter.string(for: self) ?? ""
+//        return "\(NSNumber(value: self))"
     }
 }
 
@@ -25,10 +25,10 @@ extension Double {
     /// 如 4.09999999 -> 5
     /// - Parameter fractionDigits: 显示最大小数点后面几位
     public func niceNumber(withFractionDigits fractionDigits: UInt) -> String {
-//        let formatter = NumberFormatter()
-//        formatter.numberStyle = .decimal
-//        formatter.maximumFractionDigits = Int(fractionDigits)
-//        return formatter.string(from: self as NSNumber) ?? ""
-        return "\(NSNumber(value: self))"
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = Int(fractionDigits)
+        return formatter.string(for: self) ?? ""
+//        return "\(NSNumber(value: self))"
     }
 }
