@@ -54,4 +54,57 @@ extension UIViewController {
         }
         return vcs[index - 1]
     }
+    
+    /// 查找当前视图控制器下最顶层的视图控制器，如果自己就是最顶层就返回自身
+    ///
+    /// 使用方法如下：
+    ///
+    /// ````
+    /// extension AppDelegate {
+    ///     // 查找顶层视图控制器，也就是当前显示的视图控制
+    ///     var topViewController: UIViewController? {
+    ///         guard let mainWindow = UIViewController().currentWindow else {
+    ///             print(">>> 当前无激活window")
+    ///             return nil
+    ///         }
+    ///
+    ///         guard let rootViewController = mainWindow.rootViewController else {
+    ///             print(">>> 当前激活window无rootViewController")
+    ///             return nil
+    ///         }
+    ///
+    ///         return rootViewController.catchViewController
+    ///     }
+    /// }
+    /// ````
+    public var catchViewController: UIViewController {
+        if let navi = self as? UINavigationController {
+            guard let top = navi.topViewController else {
+                print(">>> \(self): 当前vc是UINavigationController，但是没有找到下一级，所以下一级视图控制器是自己")
+                return navi
+            }
+            
+            if let present = top.presentedViewController {
+                return present.catchViewController
+            }
+            
+            return top.catchViewController
+        }
+        
+        if let tab = self as? UITabBarController {
+            guard let selected = tab.selectedViewController else {
+                print(">>> \(self): 当前vc是UITabBarController，但是没有找到下一级，所以下一级视图控制器是自己")
+                return tab
+            }
+            
+            return selected.catchViewController
+        }
+        
+        if let present = presentedViewController {
+            return present.catchViewController
+        }
+        
+        print(">>> \(self): --- 找到最顶层控制器 ---")
+        return self
+    }
 }
