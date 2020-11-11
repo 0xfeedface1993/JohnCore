@@ -31,4 +31,44 @@ extension String {
         print(">>> email: \(nsText.substring(with: result.range))")
         return true
     }
+    
+    /// 字符串是否是合法的身份证号
+    public var isValidIDCardNumber: Bool {
+        // 判断是否为空
+        guard count == 18 else { return false }
+        
+        // 判断是否是18位，末尾是否是x
+        let regex2: String = "^(\\d{14}|\\d{17})(\\d|[xX])$"
+        let identityCardPredicate = NSPredicate(format: "SELF MATCHES %@", regex2)
+        guard identityCardPredicate.evaluate(with: self) else { return false }
+        
+        // 判断生日是否合法
+        let datestr = String(self[index(startIndex, offsetBy: 6)..<index(startIndex, offsetBy: 14)])
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        guard let _ = formatter.date(from: datestr) else { return false }
+        
+        let idCardWi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]
+        // 将前17位加权因子保存在数组里
+        let idCardY = [1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2]
+        // 这是除以11后，可能产生的11位余数、验证码，也保存成数组
+        // 用来保存前17位各自乖以加权因子后的总和
+        let values: [Int] = idCardWi.enumerated().map({
+            let range = index(startIndex, offsetBy: $0.offset)..<index(startIndex, offsetBy: $0.offset + 1)
+            return (Int(String(self[range])) ?? 0) * idCardWi[$0.offset]
+        })
+        let idCardWiSum = values.reduce(0) { $0 + $1 }
+        let idCardMod = idCardWiSum % idCardY.count
+        // 计算出校验码所在数组的位置
+        let idCardLast = String(self[index(endIndex, offsetBy: -1)..<endIndex])
+        // 得到最后一位身份证号码
+        // 如果等于2，则说明校验码是10，身份证号码最后一位应该是X
+        if idCardMod == 2 {
+            return idCardLast == "X" || idCardLast == "x"
+        }   else    {
+            // 用计算出的验证码与最后一位身份证号码匹配，如果一致，说明通过，否则是无效的身份证号码
+            guard let lastInt = Int(idCardLast) else { return false }
+            return idCardY[idCardMod] == lastInt
+        }
+    }
 }

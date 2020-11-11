@@ -107,4 +107,28 @@ extension UIViewController {
         print(">>> \(self): --- 找到最顶层控制器 ---")
         return self
     }
+    
+    /// 查找当前顶级视图的视图栈路径中是否有指定类型控制器
+    /// - Parameter type: 需要查找的视图控制器
+    /// - Returns: 找到则返回true
+    public func trace<T: UIViewController>(type: T.Type) -> Bool {
+        if let _ = self as? T {
+            return true
+        }
+        
+        // 模态弹出的控制器，继续解析其父控制器
+        if let present = presentingViewController {
+            return present.trace(type: type)
+        }
+        
+        if let tab = tabBarController {
+            return tab.trace(type: type)
+        }
+        
+        if let nav = navigationController {
+            return nav.trace(type: type)
+        }
+        
+        return false
+    }
 }

@@ -24,4 +24,16 @@ final class JohnCoreTests: XCTestCase {
             XCTAssert(!i.isEmailAddress(), "非法邮箱验证失败：\(i)")
         }
     }
+    
+    /// 验证身份证识别方法
+    func testIDValidate() {
+        let goodIDs = ["110101199003073378", "11010119860115478X"]
+        let badIDs = ["11010118", "11010119860115478222X", "110101158601133920", "110101198601150562"]
+        for i in goodIDs {
+            XCTAssert(i.isValidIDCardNumber, "正确邮箱验证失败：\(i)")
+        }
+        for i in badIDs {
+            XCTAssert(!i.isValidIDCardNumber, "非法邮箱验证失败：\(i)")
+        }
+    }
 }
