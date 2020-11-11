@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseCollectionViewCell: UICollectionViewCell {
+public class BaseCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCell()
@@ -18,15 +18,15 @@ class BaseCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupCell() {
+    public func setupCell() {
         print(">>> Subclass override this method!")
     }
 }
 
-class UIInnerCollectionViewCell<View: UIView>: BaseCollectionViewCell, InnerCell {
-    var innerView: View = View(frame: .zero)
+public class UIInnerCollectionViewCell<View: UIView>: BaseCollectionViewCell, InnerCell {
+    public var innerView: View = View(frame: .zero)
     
-    override func setupCell() {
+    public override func setupCell() {
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         
@@ -36,7 +36,7 @@ class UIInnerCollectionViewCell<View: UIView>: BaseCollectionViewCell, InnerCell
         })
     }
     
-    func contentInsets() -> UIEdgeInsets {
+    public func contentInsets() -> UIEdgeInsets {
         return .zero
     }
 }

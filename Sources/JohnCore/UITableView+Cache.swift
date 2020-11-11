@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol HeightCache {
+public protocol HeightCache {
     /// 缓存高度集合，根据cell位置缓存
     var heightCaches: [IndexPath:CGFloat] { get set }
 }

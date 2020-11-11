@@ -17,7 +17,7 @@ extension UIView {
     
     // 为view添加点击事件
     @discardableResult
-    func onTap(_ closure: @escaping () -> ()) -> Self {
+    public func onTap(_ closure: @escaping () -> ()) -> Self {
         var gesture = objc_getAssociatedObject(self, &AssociateKeys.gestureKey)
         if gesture == nil {
             gesture = UITapGestureRecognizer(target: self, action: #selector(handleActionForTapGesture(_:)))
@@ -42,7 +42,7 @@ extension UIView {
 
 extension Array where Element == UIView {
     // 同时给多个view添加事件
-    func onTap(_ closure: @escaping () -> ()) {
+    public func onTap(_ closure: @escaping () -> ()) {
         forEach({ $0.onTap(closure) })
     }
 }

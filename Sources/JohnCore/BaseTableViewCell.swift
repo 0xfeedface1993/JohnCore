@@ -8,11 +8,11 @@
 
 import UIKit
 
-class BaseTableViewCell: UITableViewCell {
+public class BaseTableViewCell: UITableViewCell {
     /// 顶部线条，默认隐藏
-    let topLine = UIView()
+    public let topLine = UIView()
     /// 底部线条，默认隐藏
-    let bottomLine = UIView()
+    public let bottomLine = UIView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -38,7 +38,7 @@ class BaseTableViewCell: UITableViewCell {
         })
     }
     
-    func setupCell() {
+    public func setupCell() {
         print(">>> Subclass override this method!")
     }
     
@@ -61,10 +61,10 @@ public protocol CellIdentifier {
     static var identifier: String { get set }
 }
 
-class UIInnerTableViewCell<View: UIView>: BaseTableViewCell, InnerCell {
-    var innerView: View = View(frame: .zero)
+public class UIInnerTableViewCell<View: UIView>: BaseTableViewCell, InnerCell {
+    public var innerView: View = View(frame: .zero)
     
-    override func setupCell() {
+    public override func setupCell() {
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         
@@ -74,7 +74,7 @@ class UIInnerTableViewCell<View: UIView>: BaseTableViewCell, InnerCell {
         })
     }
     
-    func contentInsets() -> UIEdgeInsets {
+    public func contentInsets() -> UIEdgeInsets {
         return .zero
     }
 }
