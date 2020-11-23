@@ -18,15 +18,15 @@ open class BaseCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func setupCell() {
+    open func setupCell() {
         print(">>> Subclass override this method!")
     }
 }
 
 open class UIInnerCollectionViewCell<View: UIView>: BaseCollectionViewCell, InnerCell {
-    public var innerView: View = View(frame: .zero)
+    open var innerView: View = View(frame: .zero)
     
-    public override func setupCell() {
+    open override func setupCell() {
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         
@@ -36,7 +36,7 @@ open class UIInnerCollectionViewCell<View: UIView>: BaseCollectionViewCell, Inne
         })
     }
     
-    public func contentInsets() -> UIEdgeInsets {
+    open func contentInsets() -> UIEdgeInsets {
         return .zero
     }
 }

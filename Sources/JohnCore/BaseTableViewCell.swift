@@ -38,7 +38,7 @@ open class BaseTableViewCell: UITableViewCell {
         })
     }
     
-    public func setupCell() {
+    open func setupCell() {
         print(">>> Subclass override this method!")
     }
     
@@ -62,9 +62,9 @@ public protocol CellIdentifier {
 }
 
 open class UIInnerTableViewCell<View: UIView>: BaseTableViewCell, InnerCell {
-    public var innerView: View = View(frame: .zero)
+    open var innerView: View = View(frame: .zero)
     
-    public override func setupCell() {
+    open override func setupCell() {
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         
@@ -74,7 +74,7 @@ open class UIInnerTableViewCell<View: UIView>: BaseTableViewCell, InnerCell {
         })
     }
     
-    public func contentInsets() -> UIEdgeInsets {
+    open func contentInsets() -> UIEdgeInsets {
         return .zero
     }
 }
