@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class BaseCollectionViewCell: UICollectionViewCell {
+open class BaseCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCell()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -23,7 +23,7 @@ public class BaseCollectionViewCell: UICollectionViewCell {
     }
 }
 
-public class UIInnerCollectionViewCell<View: UIView>: BaseCollectionViewCell, InnerCell {
+open class UIInnerCollectionViewCell<View: UIView>: BaseCollectionViewCell, InnerCell {
     public var innerView: View = View(frame: .zero)
     
     public override func setupCell() {

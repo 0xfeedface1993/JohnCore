@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class BaseTableViewCell: UITableViewCell {
+open class BaseTableViewCell: UITableViewCell {
     /// 顶部线条，默认隐藏
     public let topLine = UIView()
     /// 底部线条，默认隐藏
@@ -42,7 +42,7 @@ public class BaseTableViewCell: UITableViewCell {
         print(">>> Subclass override this method!")
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
@@ -61,7 +61,7 @@ public protocol CellIdentifier {
     static var identifier: String { get set }
 }
 
-public class UIInnerTableViewCell<View: UIView>: BaseTableViewCell, InnerCell {
+open class UIInnerTableViewCell<View: UIView>: BaseTableViewCell, InnerCell {
     public var innerView: View = View(frame: .zero)
     
     public override func setupCell() {

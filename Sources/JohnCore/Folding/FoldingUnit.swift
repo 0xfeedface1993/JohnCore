@@ -12,7 +12,7 @@ public protocol PeriodElement: Equatable {
     var childrens: [Self] { get }
 }
 
-public class FoldingPeriod<T: PeriodElement>: Equatable {
+open class FoldingPeriod<T: PeriodElement>: Equatable {
     public static func == (lhs: FoldingPeriod<T>, rhs: FoldingPeriod<T>) -> Bool {
         let lp: FoldingPeriod<T>? = lhs.parent
         let rp: FoldingPeriod<T>? = rhs.parent
