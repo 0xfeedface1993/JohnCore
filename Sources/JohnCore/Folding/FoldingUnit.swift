@@ -166,6 +166,11 @@ extension JolinList {
         }   else    {
             let endIndex = jolins.count - 1
             guard startIndex < endIndex else {
+                // 当只有一个元素的时候，要特殊处理
+                if startIndex == endIndex, jolins[startIndex].level <= parentValue.level {
+                    jolins.remove(at: startIndex)
+                    return startIndex..<(startIndex + 1)
+                }
                 print(">>> invalid range \(startIndex)...\(endIndex)")
                 return nil
             }
