@@ -167,6 +167,7 @@ extension JolinList {
             let endIndex = jolins.count - 1
             guard startIndex < endIndex else {
                 // 当只有一个元素的时候，要特殊处理
+                // 只需要返回一个元素的区间
                 if startIndex == endIndex, jolins[startIndex].level <= parentValue.level {
                     jolins.remove(at: startIndex)
                     return startIndex..<(startIndex + 1)
